@@ -39,3 +39,94 @@ Final Output & Logging
 git clone https://github.com/poison01022/self-healing-sentiment-cli.git
 cd self-healing-sentiment-cli
 ```
+
+### 2. Create a virtual environment (optional but recommended)
+
+```bash
+python -m venv env
+env\Scripts\activate
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 📥 Model Download Instructions
+
+The sentiment classifier expects a fine-tuned **DistilBERT** model saved at `./fine_tuned_model/`.
+
+You can download it directly from the terminal using the Hugging Face Transformers library:
+
+#### Step 1: (Optional) Authenticate with Hugging Face if using a private repo
+```bash
+transformers-cli login
+```
+
+### Step 2: Download and save the model locally
+
+```python
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+
+model_name = "YOUR_HF_USERNAME/fine-tuned-distilbert-imdb"    #🔁 Replace YOUR_HF_USERNAME/fine-tuned-distilbert-imdb with the actual model path from Hugging Face Hub.
+
+AutoTokenizer.from_pretrained(model_name).save_pretrained("fine_tuned_model")
+AutoModelForSequenceClassification.from_pretrained(model_name).save_pretrained("fine_tuned_model")
+```
+
+### Step 3: (Optional) Pre-download the Backup Model
+
+The fallback logic uses Hugging Face's facebook/bart-large-mnli model for zero-shot classification.
+
+You can pre-download it to avoid delays during runtime:
+
+```python
+from transformers import pipeline
+
+pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
+```
+
+### 🚀 Run the CLI App
+
+To start the sentiment classification CLI application, run:
+
+```bash
+python cli_app.py
+```
+
+🛠️ Commands during execution:
+
+exit → Quit the app
+
+stats → Show fallback usage statistics
+
+plot → Display confidence curve over recent inputs
+
+### 📁 Folder Structure
+
+```arduino
+
+├── cli_app.py
+├── dag_langgraph.py
+├── fine_tune_sentiments.py  # (optional, for training)
+├── logs/
+│   └── classification_log.jsonl
+├── fine_tuned_model/
+│   ├── config.json
+│   ├── pytorch_model.bin
+│   └── tokenizer/
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 🧠 Credits
+
+- Fine-tuned using the IMDb dataset  
+- Backup via [`facebook/bart-large-mnli`](https://huggingface.co/facebook/bart-large-mnli)  
+- Built with [Hugging Face Transformers](https://huggingface.co) and [LangGraph](https://python.langchain.com/docs/langgraph)  
+- 💻 Developed by **Adarsh Prasad**
+
+---
