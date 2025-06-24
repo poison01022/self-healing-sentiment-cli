@@ -36,6 +36,6 @@ Final Output & Logging
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/self-healing-sentiment-cli.git
+git clone https://github.com/poison01022/self-healing-sentiment-cli.git
 cd self-healing-sentiment-cli
 ```
