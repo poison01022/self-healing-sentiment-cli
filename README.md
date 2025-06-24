@@ -89,11 +89,23 @@ pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
 
 ### 🚀 Run the CLI App
 
-To start the sentiment classification CLI application, run:
+Before launching the CLI, make sure the fine-tuned model is available.  
+If you haven't trained it yet, run:
+
+```bash
+python fine_tune_sentiments.py
+```
+This will fine-tune DistilBERT on the IMDb dataset and save the model to the fine_tuned_model/ directory.
+
+Then, start the sentiment classification CLI application:
 
 ```bash
 python cli_app.py
 ```
+
+The CLI supports intelligent fallback using a zero-shot model and logs all predictions with confidence scores.
+
+
 
 🛠️ Commands during execution:
 
