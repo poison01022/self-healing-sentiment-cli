@@ -1,0 +1,12 @@
+# Ignore trained models
+/fine_tuned_model/
+/results/
+/logs/
+
+# Ignore Python environment
+env/
+__pycache__/
+*.pyc
+
+# Ignore Jupyter checkpoints if any
+.ipynb_checkpoints/
