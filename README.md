@@ -103,6 +103,12 @@ stats → Show fallback usage statistics
 
 plot → Display confidence curve over recent inputs
 
+### OUTPUT SAMPLE
+
+![Image](https://github.com/user-attachments/assets/9e3f3848-fefb-4fb6-8d0e-768008478140)
+![Image](https://github.com/user-attachments/assets/051d2eca-b4db-44e1-a8c9-09adaf810021)
+
+
 ### 📁 Folder Structure
 
 ```arduino
